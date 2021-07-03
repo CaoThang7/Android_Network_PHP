@@ -1,0 +1,76 @@
+<html>
+<head>
+<title>AsyncTask.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #0033b3;}
+.s1 { color: #080808;}
+.s2 { color: #8c8c8c; font-style: italic;}
+.s3 { color: #1750eb;}
+.s4 { color: #067d17;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+AsyncTask.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.example.anroid_networking.Lab1;</span>
+
+<span class="s0">import </span><span class="s1">android.app.ProgressDialog;</span>
+<span class="s0">import </span><span class="s1">android.content.Context;</span>
+<span class="s0">import </span><span class="s1">android.graphics.Bitmap;</span>
+<span class="s0">import </span><span class="s1">android.graphics.BitmapFactory;</span>
+
+<span class="s0">import </span><span class="s1">java.io.IOException;</span>
+<span class="s0">import </span><span class="s1">java.io.InputStream;</span>
+<span class="s0">import </span><span class="s1">java.net.URL;</span>
+<span class="s2">// LoadImageTask kế thừa lớp AsyncTask</span>
+<span class="s0">public class </span><span class="s1">AsyncTask </span><span class="s0">extends </span><span class="s1">android.os.AsyncTask&lt;String,Void, Bitmap&gt; {</span>
+    <span class="s0">private </span><span class="s1">Listener mlistener;</span>
+    <span class="s0">private </span><span class="s1">ProgressDialog progressDialog;</span>
+    <span class="s0">public </span><span class="s1">AsyncTask(Listener listener, Context context){</span>
+       <span class="s1">mlistener=listener;</span>
+       <span class="s1">progressDialog= </span><span class="s0">new </span><span class="s1">ProgressDialog(context);</span>
+    <span class="s1">}</span>
+
+
+
+
+    <span class="s2">//xử lý Load hình từ server trong hàm doInBackground</span>
+    <span class="s1">@Override</span>
+    <span class="s0">protected </span><span class="s1">Bitmap doInBackground(String... params) {</span>
+        <span class="s0">try</span><span class="s1">{</span>
+           <span class="s0">return </span><span class="s1">BitmapFactory.decodeStream((InputStream)</span><span class="s0">new </span><span class="s1">URL(params[</span><span class="s3">0</span><span class="s1">]).getContent());</span>
+        <span class="s1">}</span><span class="s0">catch </span><span class="s1">(IOException e){</span>
+             <span class="s1">e.printStackTrace();</span>
+        <span class="s1">}</span>
+        <span class="s0">return null</span><span class="s1">;</span>
+    <span class="s1">}</span>
+
+    <span class="s2">//Đóng dialog và set kết quả về cho hàm onImageLoaded ở interface listener</span>
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onPostExecute(Bitmap result) {</span>
+       <span class="s0">super</span><span class="s1">.onPostExecute(result);</span>
+       <span class="s0">if</span><span class="s1">(progressDialog.isShowing()){</span>
+           <span class="s1">progressDialog.dismiss();</span>
+       <span class="s1">}</span>
+       <span class="s0">if</span><span class="s1">(result != </span><span class="s0">null</span><span class="s1">){</span>
+           <span class="s1">mlistener.onImageLoaded(result);</span>
+       <span class="s1">}</span><span class="s0">else </span><span class="s1">{</span>
+           <span class="s1">mlistener.onError();</span>
+       <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s2">//Nạp chồng hàm onPreExecute và xử lý việc hiển thị dialog</span>
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onPreExecute() {</span>
+        <span class="s0">super</span><span class="s1">.onPreExecute();</span>
+        <span class="s1">progressDialog.setMessage(</span><span class="s4">&quot;Downloading image...&quot;</span><span class="s1">);</span>
+        <span class="s1">progressDialog.show();</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>

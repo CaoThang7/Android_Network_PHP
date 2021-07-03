@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>Lab1b1Activity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #0033b3;}
+.s1 { color: #080808;}
+.s2 { color: #8c8c8c; font-style: italic;}
+.s3 { color: #067d17;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Lab1b1Activity.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.example.anroid_networking.Lab1;</span>
+
+<span class="s0">import </span><span class="s1">androidx.appcompat.app.AppCompatActivity;</span>
+
+<span class="s0">import </span><span class="s1">android.content.Intent;</span>
+<span class="s0">import </span><span class="s1">android.graphics.Bitmap;</span>
+<span class="s0">import </span><span class="s1">android.graphics.BitmapFactory;</span>
+<span class="s0">import </span><span class="s1">android.os.Bundle;</span>
+<span class="s0">import </span><span class="s1">android.view.View;</span>
+<span class="s0">import </span><span class="s1">android.widget.Button;</span>
+<span class="s0">import </span><span class="s1">android.widget.ImageView;</span>
+<span class="s0">import </span><span class="s1">android.widget.TextView;</span>
+
+<span class="s0">import </span><span class="s1">com.example.anroid_networking.R;</span>
+
+<span class="s0">import </span><span class="s1">java.io.IOException;</span>
+<span class="s0">import </span><span class="s1">java.net.URL;</span>
+
+<span class="s0">public class </span><span class="s1">Lab1b1Activity </span><span class="s0">extends </span><span class="s1">AppCompatActivity </span><span class="s0">implements </span><span class="s1">View.OnClickListener {</span>
+    <span class="s0">private </span><span class="s1">Button btn,btnback;</span>
+    <span class="s0">private </span><span class="s1">TextView tv;</span>
+    <span class="s0">private </span><span class="s1">ImageView img;</span>
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) {</span>
+        <span class="s0">super</span><span class="s1">.onCreate(savedInstanceState);</span>
+        <span class="s1">setContentView(R.layout.activity_lab1b1);</span>
+        <span class="s1">btn=findViewById(R.id.btn);</span>
+        <span class="s1">tv=findViewById(R.id.tv);</span>
+        <span class="s1">img=findViewById(R.id.img);</span>
+        <span class="s1">btnback=findViewById(R.id.btnback);</span>
+
+        <span class="s1">btn.setOnClickListener(</span><span class="s0">this</span><span class="s1">);</span>
+
+        <span class="s1">btnback.setOnClickListener(</span><span class="s0">this</span><span class="s1">);</span>
+
+        <span class="s1">btnback.setOnClickListener(</span><span class="s0">new </span><span class="s1">View.OnClickListener() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">onClick(View v) {</span>
+                <span class="s1">Intent i=</span><span class="s0">new </span><span class="s1">Intent(Lab1b1Activity.</span><span class="s0">this</span><span class="s1">,MainChinhActivity.</span><span class="s0">class</span><span class="s1">);</span>
+                <span class="s1">startActivity(i);</span>
+            <span class="s1">}</span>
+        <span class="s1">});</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">onClick(View v) {</span>
+        <span class="s2">//Su kien click btn</span>
+        <span class="s0">final </span><span class="s1">Thread thread =</span><span class="s0">new </span><span class="s1">Thread(</span><span class="s0">new </span><span class="s1">Runnable() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">run() {</span>
+                <span class="s0">final </span><span class="s1">Bitmap bitmap=loadImg(</span><span class="s3">&quot;https://cdn1.tuoitre.vn/zoom/80_50/2021/6/28/img5278-16248945915451147865614-crop-16248946420781468525756.jpg&quot;</span><span class="s1">);</span>
+                <span class="s1">img.post(</span><span class="s0">new </span><span class="s1">Runnable() {</span>
+                    <span class="s1">@Override</span>
+                    <span class="s0">public void </span><span class="s1">run() {</span>
+                        <span class="s1">tv.setText(</span><span class="s3">&quot;Success!&quot;</span><span class="s1">);</span>
+                        <span class="s1">img.setImageBitmap(bitmap);</span>
+
+                    <span class="s1">}</span>
+                <span class="s1">});</span>
+            <span class="s1">}</span>
+        <span class="s1">});</span>
+        <span class="s2">//start</span>
+        <span class="s1">thread.start();</span>
+
+    <span class="s1">}</span>
+    <span class="s2">//ham load anh tu server</span>
+    <span class="s0">private </span><span class="s1">Bitmap loadImg(String link){</span>
+        <span class="s1">URL url;</span>
+        <span class="s1">Bitmap bitmap= </span><span class="s0">null</span><span class="s1">;</span>
+        <span class="s0">try</span><span class="s1">{</span>
+            <span class="s1">url=</span><span class="s0">new </span><span class="s1">URL(link);</span>
+            <span class="s1">bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());</span>
+        <span class="s1">}</span><span class="s0">catch </span><span class="s1">(IOException e){</span>
+             <span class="s1">e.printStackTrace();</span>
+        <span class="s1">}</span>
+        <span class="s0">return </span><span class="s1">bitmap;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

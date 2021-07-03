@@ -1,0 +1,68 @@
+<html>
+<head>
+<title>AsyncTaskRunner.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #0033b3;}
+.s1 { color: #080808;}
+.s2 { color: #067d17;}
+.s3 { color: #1750eb;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+AsyncTaskRunner.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.example.anroid_networking.Lab1;</span>
+
+<span class="s0">import </span><span class="s1">android.app.ProgressDialog;</span>
+<span class="s0">import </span><span class="s1">android.content.Context;</span>
+<span class="s0">import </span><span class="s1">android.widget.EditText;</span>
+<span class="s0">import </span><span class="s1">android.widget.TextView;</span>
+
+<span class="s0">public class </span><span class="s1">AsyncTaskRunner </span><span class="s0">extends </span><span class="s1">android.os.AsyncTask&lt;String,String,String&gt;{</span>
+    <span class="s0">private  </span><span class="s1">String resp;</span>
+    <span class="s1">ProgressDialog progressDialog;</span>
+    <span class="s1">TextView tv,tv2;</span>
+    <span class="s1">EditText edt;</span>
+    <span class="s1">Context context;</span>
+    <span class="s0">public  </span><span class="s1">AsyncTaskRunner(Context context,TextView tv,TextView tv2,EditText edt){</span>
+        <span class="s0">this</span><span class="s1">.context=context;</span>
+        <span class="s0">this</span><span class="s1">.tv=tv;</span>
+        <span class="s0">this</span><span class="s1">.edt=edt;</span>
+        <span class="s0">this</span><span class="s1">.tv2=tv2;</span>
+    <span class="s1">}</span>
+    <span class="s1">@Override</span>
+    <span class="s0">protected </span><span class="s1">String doInBackground(String... params) {</span>
+       <span class="s1">publishProgress(</span><span class="s2">&quot;Sleeping...&quot;</span><span class="s1">);</span>
+       <span class="s0">try</span><span class="s1">{</span>
+          <span class="s0">int </span><span class="s1">time=Integer.parseInt(params[</span><span class="s3">0</span><span class="s1">])* </span><span class="s3">1000</span><span class="s1">;</span>
+          <span class="s1">Thread.sleep(time);</span>
+          <span class="s1">resp=</span><span class="s2">&quot;Slept for&quot; </span><span class="s1">+  </span><span class="s2">&quot; &quot; </span><span class="s1">+ params[</span><span class="s3">0</span><span class="s1">]+ </span><span class="s2">&quot;seconds&quot;</span><span class="s1">;</span>
+       <span class="s1">}</span><span class="s0">catch </span><span class="s1">(Exception e){</span>
+           <span class="s1">e.printStackTrace();</span>
+           <span class="s1">resp=e.getMessage();</span>
+       <span class="s1">}</span>
+       <span class="s0">return </span><span class="s1">resp;</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onPreExecute() {</span>
+        <span class="s0">super</span><span class="s1">.onPreExecute();</span>
+        <span class="s1">progressDialog=ProgressDialog.show(context,</span><span class="s2">&quot;ProgressDialog&quot;</span><span class="s1">,</span><span class="s2">&quot;Wait for&quot; </span><span class="s1">+ </span><span class="s2">&quot; &quot; </span><span class="s1">+ edt.getText().toString() + </span><span class="s2">&quot;s&quot;</span><span class="s1">);</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onPostExecute(String s) {</span>
+        <span class="s0">super</span><span class="s1">.onPostExecute(s);</span>
+        <span class="s0">if</span><span class="s1">(progressDialog.isShowing()){</span>
+            <span class="s1">progressDialog.dismiss();</span>
+        <span class="s1">}</span>
+        <span class="s1">tv2.setText(s);</span>
+    <span class="s1">}</span>
+<span class="s1">}</span>
+</pre>
+</body>
+</html>

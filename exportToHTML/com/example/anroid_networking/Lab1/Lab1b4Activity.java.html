@@ -1,0 +1,69 @@
+<html>
+<head>
+<title>Lab1b4Activity.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #0033b3;}
+.s1 { color: #080808;}
+</style>
+</head>
+<body bgcolor="#ffffff">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#c0c0c0" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Lab1b4Activity.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.example.anroid_networking.Lab1;</span>
+
+<span class="s0">import </span><span class="s1">androidx.appcompat.app.AppCompatActivity;</span>
+
+<span class="s0">import </span><span class="s1">android.content.Intent;</span>
+<span class="s0">import </span><span class="s1">android.os.Bundle;</span>
+<span class="s0">import </span><span class="s1">android.view.View;</span>
+<span class="s0">import </span><span class="s1">android.widget.Button;</span>
+<span class="s0">import </span><span class="s1">android.widget.EditText;</span>
+<span class="s0">import </span><span class="s1">android.widget.TextView;</span>
+
+<span class="s0">import </span><span class="s1">com.example.anroid_networking.R;</span>
+
+<span class="s0">public class </span><span class="s1">Lab1b4Activity </span><span class="s0">extends </span><span class="s1">AppCompatActivity </span><span class="s0">implements </span><span class="s1">View.OnClickListener {</span>
+    <span class="s0">private </span><span class="s1">EditText edt;</span>
+    <span class="s0">private </span><span class="s1">Button btn,btnback;</span>
+    <span class="s0">private </span><span class="s1">TextView tv,tv2;</span>
+
+
+
+    <span class="s1">@Override</span>
+    <span class="s0">protected void </span><span class="s1">onCreate(Bundle savedInstanceState) {</span>
+        <span class="s0">super</span><span class="s1">.onCreate(savedInstanceState);</span>
+        <span class="s1">setContentView(R.layout.activity_lab1b4);</span>
+        <span class="s1">edt=findViewById(R.id.edt);</span>
+        <span class="s1">btn=findViewById(R.id.btn);</span>
+        <span class="s1">tv=findViewById(R.id.tv);</span>
+        <span class="s1">tv2=findViewById(R.id.tv2);</span>
+        <span class="s1">btnback=findViewById(R.id.btnback);</span>
+
+        <span class="s1">btn.setOnClickListener(</span><span class="s0">this</span><span class="s1">);</span>
+
+        <span class="s1">btnback.setOnClickListener(</span><span class="s0">new </span><span class="s1">View.OnClickListener() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">onClick(View v) {</span>
+                <span class="s1">Intent i=</span><span class="s0">new </span><span class="s1">Intent(Lab1b4Activity.</span><span class="s0">this</span><span class="s1">,MainChinhActivity.</span><span class="s0">class</span><span class="s1">);</span>
+                <span class="s1">startActivity(i);</span>
+            <span class="s1">}</span>
+        <span class="s1">});</span>
+    <span class="s1">}</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public void </span><span class="s1">onClick(View v) {</span>
+       <span class="s0">switch </span><span class="s1">(v.getId()){</span>
+           <span class="s0">case </span><span class="s1">R.id.btn:</span>
+               <span class="s1">AsyncTaskRunner asyncTaskRunner=</span><span class="s0">new </span><span class="s1">AsyncTaskRunner(</span><span class="s0">this</span><span class="s1">, tv,tv2,edt);</span>
+               <span class="s1">String sleepTime=edt.getText().toString();</span>
+               <span class="s1">asyncTaskRunner.execute(sleepTime);</span>
+               <span class="s0">break</span><span class="s1">;</span>
+       <span class="s1">}</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>
