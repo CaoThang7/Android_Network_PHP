@@ -16,6 +16,7 @@ public class Lab2b5Activity extends AppCompatActivity {
     private TextView tv_Result;
     String Name, Email, Adress;
 
+
     public static final String SEVER_NAME = "http://192.168.0.101/androidnetwork/insert.php";
 
     @Override
@@ -34,7 +35,7 @@ public class Lab2b5Activity extends AppCompatActivity {
                 Name = edtName.getText().toString();
                 Email = edtEmail.getText().toString();
                 Adress = edtAdress.getText().toString();
-                Insert_GET insert = new Insert_GET(tv_Result,Name,Email,Adress, Lab2b5Activity.this);
+                Insert_GET insert = new Insert_GET(Lab2b5Activity.this,tv_Result,Name,Email,Adress);
                 insert.execute();
             }
         });

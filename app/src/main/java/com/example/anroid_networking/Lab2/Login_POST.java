@@ -4,9 +4,12 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.example.anroid_networking.Lab1.Lab1b22Activity;
+import com.example.anroid_networking.Lab1.Lab1b2Activity;
 import com.example.anroid_networking.Lab1.MainChinhActivity;
 
 import java.io.BufferedReader;
@@ -26,7 +29,7 @@ public class Login_POST extends AsyncTask<String,Void,Void> {
     String strKetqua;
     ProgressDialog pDialog;
     Context context;
-
+    private static int SPLASH_TIME_OUT =7000;
 
     public Login_POST(Context context,TextView tvKetqua) {
         this.context = context;
@@ -72,12 +75,22 @@ public class Login_POST extends AsyncTask<String,Void,Void> {
     @Override
     protected void onPostExecute(Void result) {
         super.onPostExecute(result);
-        if(strKetqua.equalsIgnoreCase("success")) {
-            Intent intent = new Intent(context, Lab2b2Activity.class);
-            context.startActivity(intent);
-            ((Lab2b2Activity)context).finish();
-        }else {
+        if(strKetqua.equalsIgnoreCase("fail")) {
+//            Intent intent = new Intent(context, Lab2b2Activity.class);
+//            context.startActivity(intent);
+//            ((Lab2b2Activity)context).finish();
             tvKetqua.setText(strKetqua);
+        }
+        else {
+            tvKetqua.setText(strKetqua);
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    //SplassScreen
+                    context.startActivity(new Intent(context, MainChinhActivity.class));
+                }
+            },SPLASH_TIME_OUT);
+
 
         }
     }

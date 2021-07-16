@@ -2,8 +2,14 @@ package com.example.anroid_networking.Lab2;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.widget.TextView;
+
+import com.example.anroid_networking.Lab1.Lab1b22Activity;
+import com.example.anroid_networking.Lab1.Lab1b2Activity;
+import com.example.anroid_networking.Lab1.MainChinhActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,13 +24,14 @@ class Insert_GET extends AsyncTask<Void, Void, Void> {
     String strName, strEmail, strAdress;
     String str;
     ProgressDialog dialog;
+    private static int SPLASH_TIME_OUT =3000;
     Context context;
-    public Insert_GET(TextView tvResult, String strName, String strEmai, String strAdress, Context context) {
+    public Insert_GET(Context context,TextView tvResult, String strName, String strEmai, String strAdress) {
+        this.context = context;
         this.tvResult = tvResult;
         this.strName = strName;
         this.strEmail = strEmai;
         this.strAdress = strAdress;
-        this.context = context;
     }
     @Override
     protected Void doInBackground(Void... voids) {
@@ -64,7 +71,19 @@ class Insert_GET extends AsyncTask<Void, Void, Void> {
         if(dialog.isShowing()){
             dialog.dismiss();
         }
+
         tvResult.setText(str);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //SplassScreen
+                context.startActivity(new Intent(context,Lab2b4Activity.class));
+            }
+        },SPLASH_TIME_OUT);
+
+
+
     }
 
 
