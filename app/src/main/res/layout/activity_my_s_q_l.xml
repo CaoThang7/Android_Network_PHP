@@ -42,7 +42,14 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"/>
 
-
+    <Button
+        android:id="@+id/btnForgotpassword"
+        android:layout_below="@id/btnRegister"
+        android:ems="10"
+        android:text="Reset Pass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"/>
 
 
 

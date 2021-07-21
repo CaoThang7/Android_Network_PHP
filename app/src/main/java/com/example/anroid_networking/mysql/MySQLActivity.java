@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +21,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.anroid_networking.R;
+import com.google.gson.JsonObject;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -29,8 +32,9 @@ import java.util.Map;
 
 public class MySQLActivity extends AppCompatActivity {
     EditText Email,Password;
-    Button register,login;
+    Button register,login, showForgotPasswordDialog;
     ProgressDialog progressDialog;
+    UserManager userManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,12 +42,16 @@ public class MySQLActivity extends AppCompatActivity {
         Email=findViewById(R.id.log_email);
         Password=findViewById(R.id.log_password);
 
+
         progressDialog=new ProgressDialog(this);
         progressDialog.setMessage("Loading...");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
 
+        userManager=new UserManager(this);
+
         register=findViewById(R.id.btnRegister);
         login=findViewById(R.id.btnLogin);
+        showForgotPasswordDialog=findViewById(R.id.btnForgotpassword);
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +66,75 @@ public class MySQLActivity extends AppCompatActivity {
                 UserLoginProccess();
             }
         });
+        showForgotPasswordDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UserForgotPasswordWithEmail();
+            }
+        });
+    }
+
+    private void UserForgotPasswordWithEmail() {
+         View forgot_password_layout=LayoutInflater.from(this).inflate(R.layout.forgot_password,null);
+         EditText forgot_Email=forgot_password_layout.findViewById(R.id.forgot_email);
+         Button btnForgotPass=forgot_password_layout.findViewById(R.id.forgot_password);
+         AlertDialog.Builder builder=new AlertDialog.Builder(this);
+         builder.setTitle("FORGOT PASSWORD");
+         builder.setView(forgot_password_layout);
+         builder.setCancelable(false);
+         AlertDialog dialog =builder.create();
+         dialog.show();
+         btnForgotPass.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 progressDialog.dismiss();
+                 String email= forgot_Email.getText().toString().trim();
+                 if(email.isEmpty()){
+                     progressDialog.dismiss();
+                     massage("Enter a Email");
+                 }else {
+                     StringRequest stringRequest=new StringRequest(Request.Method.POST, Urls.FORGOT_PASSWORD_URL,
+                             new Response.Listener<String>() {
+                                 @Override
+                                 public void onResponse(String response) {
+                                     try {
+                                         JSONObject object=new JSONObject(response);
+                                         String mail=object.getString("mail");
+                                         if(mail.equals("send")){
+                                             progressDialog.dismiss();
+                                             dialog.dismiss();
+                                             massage("Email are successfully send");
+                                         }else {
+                                             progressDialog.dismiss();
+                                             dialog.dismiss();
+                                             massage(response);
+                                         }
+
+                                     } catch (JSONException e) {
+                                         e.printStackTrace();
+                                     }
+                                 }
+                             }, new Response.ErrorListener() {
+                         @Override
+                         public void onErrorResponse(VolleyError error) {
+                             progressDialog.dismiss();
+                             dialog.dismiss();
+                             massage(error.getMessage());
+                         }
+                     }){
+                         @Override
+                         protected Map<String, String> getParams() throws AuthFailureError {
+                             Map<String,String> params=new HashMap<>();
+                             params.put("email",email);
+                             return params;
+                         }
+                     };
+                     RequestQueue queue= Volley.newRequestQueue(MySQLActivity.this);
+                     queue.add(stringRequest);
+                 }
+             }
+         });
+
     }
 
     private void UserLoginProccess() {
@@ -74,9 +151,25 @@ public class MySQLActivity extends AppCompatActivity {
                             try {
                                 JSONObject jsonObject=new JSONObject(response);
                                 String result=jsonObject.getString("status");
+                                JSONArray jsonArray=jsonObject.getJSONArray("data");
                                 if(result.equals("Success")){
                                     progressDialog.dismiss();
-                                    massage("User Login Success!");
+                                    for(int i=0;i< jsonArray.length();i++){
+                                        JSONObject object=jsonArray.getJSONObject(i);
+                                        String name=object.getString("name");
+                                        String email=object.getString("email");
+                                        String phone=object.getString("phone");
+
+                                        userManager.UserSessonManager(name,email,phone);
+
+                                        Intent intent=new Intent(MySQLActivity.this,ProfileUserActivity.class);
+//                                        intent.putExtra("name",name);
+//                                        intent.putExtra("email",email);
+//                                        intent.putExtra("phone",phone);
+                                        startActivity(intent);
+                                        finish();
+                                        massage("User Login Success!");
+                                    }
                                 }else {
                                     progressDialog.dismiss();
                                     massage("Login error!");
