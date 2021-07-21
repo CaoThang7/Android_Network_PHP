@@ -32,7 +32,7 @@ public class Lab3b4Activity extends AppCompatActivity {
                 Snackbar.make(parentView, fashionList.get(position).getName() + " => " +
                         fashionList.get(position).getMystyle().getModern(), Snackbar.LENGTH_LONG).show();
             } });
-//        Toast toast = Toast.makeText(getApplicationContext(), R.string.string_click_to_load, Toast.LENGTH_LONG);
-//        toast.setGravity(Gravity.CENTER, 0, 0); toast.show();
+        Toast toast = Toast.makeText(getApplicationContext(), R.string.app_name, Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER, 0, 0); toast.show();
     }
 }

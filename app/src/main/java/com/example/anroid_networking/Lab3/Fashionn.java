@@ -73,13 +73,16 @@ public class Fashionn {
     }
 
     public void setMystyle(Mystyle mystyle) {
+
         this.mystyle = mystyle;
     }
 
     public class Mystyle {
-        @SerializedName("modern") @Expose
+        @SerializedName("modern")
+        @Expose
         private String modern;
-        @SerializedName("vintage") @Expose
+        @SerializedName("vintage")
+        @Expose
         private String vintage;
 
         public String getModern() {

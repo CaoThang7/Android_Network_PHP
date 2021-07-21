@@ -14,16 +14,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Anroid_Networking"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Lab3.MainLab3Activity">
+        <activity android:name=".mysql.MySQLActivity"></activity>
+        <activity android:name=".ASMGD1.ShopActivity"></activity>
+        <activity android:name=".AssignmentGD1.AsmActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Lab3.Lab3b4Activity">
-        </activity>
-        <activity android:name=".Lab3.Lab3b3Activity"></activity>
+        <activity android:name=".Lab3.MainLab3Activity" />
+        <activity android:name=".Lab3.Lab3b4Activity" />
+        <activity android:name=".Lab3.Lab3b3Activity" />
         <activity android:name=".Lab3.Lab3b2Activity" />
         <activity android:name=".Lab3.Lab3b1MainActivity" />
         <activity android:name=".Lab2.Lab2b5Activity" />

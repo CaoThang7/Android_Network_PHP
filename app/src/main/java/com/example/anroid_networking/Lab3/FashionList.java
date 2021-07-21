@@ -8,13 +8,15 @@ import java.util.ArrayList;
 public class FashionList {
     @SerializedName("fashions")
     @Expose
-    private ArrayList<Contact> contacts = new ArrayList<>();
+    private ArrayList<Fashionn> fashion = new ArrayList<>();
     /**
      * @return The contacts */
-    public ArrayList<Contact> getContacts() { return contacts;
+    public ArrayList<Fashionn> getContacts() {
+        return fashion;
     }
     /**
-     * @param contacts The contacts */
-    public void setContacts(ArrayList<Contact> contacts) { this.contacts = contacts;
+     * @param fashion The fashion */
+    public void setFashion(ArrayList<Fashionn> fashion) {
+        this.fashion = fashion;
     }
 }
