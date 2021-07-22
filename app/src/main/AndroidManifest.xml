@@ -14,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Anroid_Networking"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ASMGD1.InsertDataActivity"></activity>
         <activity android:name=".mysql.ProfileUserActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,9 +22,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".mysql.MySQLActivity">
-
-        </activity>
+        <activity android:name=".mysql.MySQLActivity"></activity>
         <activity android:name=".ASMGD1.ShopActivity" />
         <activity android:name=".AssignmentGD1.AsmActivity" />
         <activity android:name=".Lab3.MainLab3Activity" />
