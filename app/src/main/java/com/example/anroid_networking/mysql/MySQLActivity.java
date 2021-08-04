@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -21,7 +22,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.anroid_networking.R;
-import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -32,9 +32,10 @@ import java.util.Map;
 
 public class MySQLActivity extends AppCompatActivity {
     EditText Email,Password;
-    Button register,login, showForgotPasswordDialog;
+    Button register,login;
     ProgressDialog progressDialog;
     UserManager userManager;
+    TextView showForgotPasswordDialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +82,13 @@ public class MySQLActivity extends AppCompatActivity {
          AlertDialog.Builder builder=new AlertDialog.Builder(this);
          builder.setTitle("FORGOT PASSWORD");
          builder.setView(forgot_password_layout);
-         builder.setCancelable(false);
+//         builder.setCancelable(false);
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                dialog.dismiss();
+            }
+        });
          AlertDialog dialog =builder.create();
          dialog.show();
          btnForgotPass.setOnClickListener(new View.OnClickListener() {
@@ -162,7 +169,7 @@ public class MySQLActivity extends AppCompatActivity {
 
                                         userManager.UserSessonManager(name,email,phone);
 
-                                        Intent intent=new Intent(MySQLActivity.this,ProfileUserActivity.class);
+                                        Intent intent=new Intent(MySQLActivity.this,MainmicayActivity.class);
 //                                        intent.putExtra("name",name);
 //                                        intent.putExtra("email",email);
 //                                        intent.putExtra("phone",phone);

@@ -68,6 +68,6 @@ public class MyFashionAdapter extends ArrayAdapter<Fashionn> {
         Fashionn item = getItem(position);
         vh.textViewName.setText(item.getName()); vh.textViewProducttype.setText(item.getProducttype());
 //        Picasso.with(context).load(item.getProfilePic()).placeholder(R.mipmap.ic_lau ncher).error(R.mipmap.ic_launcher).into(vh.imageView);
-        Picasso.get().load(item.getProfilePic()).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(vh.imageView);
+//        Picasso.get().load(item.getProfilePic()).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher).into(vh.imageView);
         return vh.rootView; }
 }

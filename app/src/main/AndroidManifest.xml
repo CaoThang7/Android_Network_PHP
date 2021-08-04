@@ -14,21 +14,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Anroid_Networking"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ASMGD1.DetailActivity"
-            android:parentActivityName=".ASMGD1.ShopActivity">
+        <activity
+            android:name=".mysql.MainmicayActivity"
+            android:label="@string/title_activity_mainmicay"
+            android:theme="@style/Theme.Anroid_Networking.NoActionBar">
         </activity>
-        <activity android:name=".ASMGD1.InsertActivity"
-            android:parentActivityName=".ASMGD1.ShopActivity" >
-        </activity>
-        <activity android:name=".mysql.ProfileUserActivity" />
-        <activity android:name=".mysql.MySQLActivity" />
-        <activity android:name=".ASMGD1.ShopActivity">
+        <activity android:name=".mysql.MySQLActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Lab7.AndroidSocketCLIENT" />
+        <activity android:name=".Lab7.ServerLab7Activity" />
+        <activity
+            android:name=".ASMGD1.DetailActivity"
+            android:parentActivityName=".ASMGD1.ShopActivity" />
+        <activity
+            android:name=".ASMGD1.InsertActivity"
+            android:parentActivityName=".ASMGD1.ShopActivity" />
+        <activity android:name=".mysql.ProfileUserActivity" />
+        <activity android:name=".ASMGD1.ShopActivity" />
         <activity android:name=".AssignmentGD1.AsmActivity" />
         <activity android:name=".Lab3.MainLab3Activity" />
         <activity android:name=".Lab3.Lab3b4Activity" />

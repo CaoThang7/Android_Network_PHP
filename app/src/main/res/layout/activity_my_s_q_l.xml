@@ -1,56 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ggg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="10dp"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
     tools:context=".mysql.MySQLActivity">
 
-
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="-70dp"
+        android:layout_marginBottom="70dp"
+        app:srcCompat="@drawable/logo" />
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="-50dp"
+        android:text="Mì Cay GOCHU"
+        android:textColor="#800000"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="10dp"
+        android:text="Tài Khoản:"
+        />
     <EditText
         android:id="@+id/log_email"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Enter email"
-        android:inputType="textEmailAddress"/>
-
+        android:layout_height="50dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textSize="20dp"
+        android:drawableLeft="@drawable/ic_account"
+        android:background="@drawable/round_border"
+        />
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="10dp"
+        android:text="Mật khẩu:"
+        />
     <EditText
         android:id="@+id/log_password"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/log_email"
-        android:hint="Enter password"
-        android:inputType="textPassword"/>
-
-
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_below="@id/log_password"
+        android:layout_height="50dp"
         android:ems="10"
-        android:text="Login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"/>
-
-    <Button
-        android:id="@+id/btnRegister"
-        android:layout_below="@id/btnLogin"
-        android:ems="10"
-        android:text="Register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"/>
-
-    <Button
+        android:inputType="textPassword"
+        android:text=""
+        android:drawableLeft="@drawable/ic_lock"
+        android:textSize="20dp"
+        android:background="@drawable/round_border"
+        />
+    <TextView
         android:id="@+id/btnForgotpassword"
-        android:layout_below="@id/btnRegister"
-        android:ems="10"
-        android:text="Reset Pass"
         android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:textStyle="bold"
+        android:textSize="15dp"
+        android:layout_marginLeft="7dp"
+        android:layout_marginTop="10dp"
+        android:text="Quên mật khẩu?"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"/>
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="4"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/round_bordertwo"
+            android:textColor="@color/white"
+
+            android:text="Đăng Nhập "
+            />
+
+        <Button
+            android:id="@+id/btnRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_weight="3"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:background="@drawable/round_bordertwo"
+            android:text="Đăng ký "
+            />
+
+    </LinearLayout>
 
 
 
-</RelativeLayout>
+
+</LinearLayout>
