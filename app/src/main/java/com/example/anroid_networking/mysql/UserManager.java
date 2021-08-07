@@ -16,7 +16,6 @@ public class UserManager {
     public static final String NAME= "name";
     public static final String EMAIL= "email";
     public static final String PHONE= "phone";
-
     public UserManager(Context context){
         this.context=context;
         sharedPreferences=context.getSharedPreferences(PREF_NAME,Context.MODE_PRIVATE);
@@ -38,7 +37,7 @@ public class UserManager {
        if(!this.isUserLogin()){
            Intent intent=new Intent(context,MySQLActivity.class);
            context.startActivity(intent);
-           ((ProfileUserActivity)context).finish();
+           ((MainmicayActivity)context).finish();
        }
     }
     public HashMap<String,String> userDatails(){
@@ -54,6 +53,6 @@ public class UserManager {
 
         Intent intent=new Intent(context,MySQLActivity.class);
         context.startActivity(intent);
-        ((ProfileUserActivity)context).finish();
+        ((MainmicayActivity)context).finish();
     }
 }

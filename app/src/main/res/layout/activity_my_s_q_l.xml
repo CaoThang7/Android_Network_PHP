@@ -7,7 +7,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_vertical"
-    tools:context=".mysql.MySQLActivity">
+    tools:context=".mysql.MySQLActivity"
+    android:background="@color/white"
+    >
 
     <ImageView
         android:id="@+id/imageView"
@@ -86,7 +88,7 @@
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_weight="4"
             android:layout_marginTop="10dp"
             android:background="@drawable/round_bordertwo"
@@ -98,7 +100,7 @@
         <Button
             android:id="@+id/btnRegister"
             android:layout_width="wrap_content"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_weight="3"
             android:layout_marginTop="10dp"
             android:textColor="@color/white"
@@ -106,8 +108,8 @@
             android:text="Đăng ký "
             />
 
-    </LinearLayout>
 
+    </LinearLayout>
 
 
 

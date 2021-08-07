@@ -3,12 +3,16 @@ package com.example.anroid_networking.mysql;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.anroid_networking.R;
+import com.example.anroid_networking.mysql.Utils.Common;
 import com.example.anroid_networking.mysql.ui.gallery.GalleryFragment;
 import com.example.anroid_networking.mysql.ui.home.HomeFragment;
 import com.example.anroid_networking.mysql.ui.slideshow.SlideshowFragment;
@@ -16,8 +20,10 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.nex3z.notificationbadge.NotificationBadge;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.core.view.GravityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
@@ -30,12 +36,14 @@ import androidx.appcompat.widget.Toolbar;
 
 import java.util.HashMap;
 
-public class MainmicayActivity extends AppCompatActivity {
+public class MainmicayActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private AppBarConfiguration mAppBarConfiguration;
     private BottomNavigationView mbottomNavigationView;
     UserManager userManager;
     ProgressDialog progressDialog;
     TextView Name,Email;
+    NotificationBadge badge;
+    ImageView cart_icon;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,13 +74,17 @@ public class MainmicayActivity extends AppCompatActivity {
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
-                .setDrawerLayout(drawer)
-                .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
+//        mAppBarConfiguration = new AppBarConfiguration.Builder(
+//                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+//                .setDrawerLayout(drawer)
+//                .build();
+//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+//        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+//        NavigationUI.setupWithNavController(navigationView, navController);
+
+        ActionBarDrawerToggle toggle=new ActionBarDrawerToggle(this,drawer,toolbar,R.string.Open,R.string.Close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
 
 
 
@@ -84,21 +96,26 @@ public class MainmicayActivity extends AppCompatActivity {
         Name.setText(mName);
         Email.setText(mEmail);
 
+        navigationView.setNavigationItemSelectedListener(this);
 
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                 int id=item.getItemId();
-                 switch (id){
-                     case R.id.logout:
-                         userManager.logout();
-                         break;
-                 }
-                drawer.closeDrawer(GravityCompat.START);
-                return true;
-            }
-        });
+//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                 Fragment selectedFragment=null;
+//                 int id=item.getItemId();
+//                 switch (id){
+//                     case R.id.logout:
+//                         userManager.logout();
+//                         break;
+//                 }
+//                drawer.closeDrawer(GravityCompat.START);
+//                return true;
+//
+//            }
+//        });
 
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.nav_host_fragment,new HomeFragment()).commit();
 
 
     }
@@ -130,9 +147,35 @@ public class MainmicayActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.mainmicay, menu);
+
+        getMenuInflater().inflate(R.menu.menu_action_bar, menu);
+//        View view=menu.findItem(R.id.cart_menu).getActionView();
+////        badge =(NotificationBadge)view.findViewById(R.id.badge);
+////        updateCartCount();
+//        cart_icon=(ImageView)view.findViewById(R.id.cart_icon);
+//        cart_icon.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(MainmicayActivity.this, "Hello Bro", Toast.LENGTH_SHORT).show();
+//            }
+//        });
         return true;
     }
+
+//    private void updateCartCount() {
+//        if(badge== null) return;
+//         runOnUiThread(new Runnable() {
+//             @Override
+//             public void run() {
+//                 if(Common.cartRepository.countCartItems()==0){
+//                     badge.setVisibility(View.INVISIBLE);
+//                 }else {
+//                     badge.setVisibility(View.VISIBLE);
+//                     badge.setText(String.valueOf(Common.cartRepository.countCartItems()));
+//                 }
+//             }
+//         });
+//    }
 
     @Override
     public boolean onSupportNavigateUp() {
@@ -142,4 +185,49 @@ public class MainmicayActivity extends AppCompatActivity {
     }
 
 
+
+    @Override
+    public void onBackPressed(){
+        DrawerLayout drawer=findViewById(R.id.drawer_layout);
+        if(drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);
+        }else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item){
+        int id=item.getItemId();
+        if(id== R.id.nav_home){
+
+        }else if(id== R.id.nav_gallery){
+
+        }
+        else if(id== R.id.nav_slideshow){
+
+        }else if(id== R.id.logout){
+            userManager.logout();
+
+        }
+        DrawerLayout drawerLayout=findViewById(R.id.drawer_layout);
+        drawerLayout.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        updateCartCount();
+//    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id=item.getItemId();
+        if(id==R.id.cart_menu){
+            Toast.makeText(this, "hello", Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

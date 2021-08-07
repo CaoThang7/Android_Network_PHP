@@ -78,6 +78,21 @@ dependencies {
 
     implementation 'com.squareup.picasso:picasso:2.5.2'
 
+    implementation 'com.cepheuen.elegant-number-button:lib:1.0.2'
+
+//    implementation 'androidx.arch.persistence.room:runtime:1.1.0'
+//
+//    implementation 'androidx.arch.persistence.room:rxjava2:1.1.0'
+//
+//    annotationProcessor 'androidx.arch.persistence.room:compiler:1.1.0'
+
+    implementation 'android.arch.persistence.room:runtime:1.0.0-alpha1'
+    annotationProcessor 'android.arch.persistence.room:compiler:1.0.0-alpha1'
+    implementation 'android.arch.lifecycle:extensions:1.0.0-alpha1'
+    annotationProcessor 'android.arch.lifecycle:compiler:1.0.0-alpha1'
+    implementation 'android.arch.persistence.room:rxjava2:1.0.0-alpha1'
+
+    implementation 'com.nex3z:notification-badge:1.0.2'
 
 
 }

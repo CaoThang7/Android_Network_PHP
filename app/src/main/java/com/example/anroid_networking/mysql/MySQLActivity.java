@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +32,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MySQLActivity extends AppCompatActivity {
+    LinearLayout ggg;
     EditText Email,Password;
     Button register,login;
     ProgressDialog progressDialog;
@@ -40,6 +42,8 @@ public class MySQLActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_s_q_l);
+//        ggg = (LinearLayout) findViewById(R.id.ggg);
+//        ggg.setBackgroundResource(R.drawable.ot);
         Email=findViewById(R.id.log_email);
         Password=findViewById(R.id.log_password);
 
@@ -57,7 +61,9 @@ public class MySQLActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                UserRegistrationProccess();
+//                UserRegistrationProccess();
+                Intent i=new Intent(MySQLActivity.this,SignUpActivity.class);
+                startActivity(i);
             }
         });
 
@@ -159,7 +165,7 @@ public class MySQLActivity extends AppCompatActivity {
                                 JSONObject jsonObject=new JSONObject(response);
                                 String result=jsonObject.getString("status");
                                 JSONArray jsonArray=jsonObject.getJSONArray("data");
-                                if(result.equals("Success")){
+                                if(result.equals("Đăng nhập thành công!")){
                                     progressDialog.dismiss();
                                     for(int i=0;i< jsonArray.length();i++){
                                         JSONObject object=jsonArray.getJSONObject(i);

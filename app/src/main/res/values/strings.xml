@@ -17,4 +17,7 @@
     <string name="title_activity_main_chinh">MainChinhActivity</string>
     <string name="title_activity_temple">TempleActivity</string>
     <string name="title_activity_mainmicay">MainmicayActivity</string>
+
+    <string name="Open">Open</string>
+    <string name="Close">Close</string>
 </resources>
