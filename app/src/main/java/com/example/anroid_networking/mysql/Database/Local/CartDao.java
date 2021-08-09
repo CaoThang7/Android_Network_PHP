@@ -34,4 +34,8 @@ public interface CartDao {
 
     @Delete
     void deleteCartItem(Cart cart);
+
+
+    @Query("SELECT SUM(Price) from Cart")
+    float sumPrice();
 }

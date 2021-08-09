@@ -18,6 +18,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+//write Adapter for RecyclerView
 public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
     Context context;
     List<Category> categories;
@@ -43,12 +44,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryViewHolder> {
                 .load(categories.get(position).Link)
                 .into(holder.img_product);
 
+        //Load Name
         holder.txt_menu_name.setText(categories.get(position).Name);
 
         //Event
         holder.setItemClickListener(new ItemClickListener() {
             @Override
             public void onClick(View v) {
+                //Goi currentCategory từ biến để lưu trữ dữ liệu
+                //Truyen du lieu vao trong categories tu List model
                 Common.currentCategory= categories.get(position);
 
                 //Start new activity

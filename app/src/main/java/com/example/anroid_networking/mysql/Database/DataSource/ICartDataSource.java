@@ -14,4 +14,5 @@ public interface ICartDataSource {
     void insertToCart(Cart...carts);
     void updateCart(Cart...carts);
     void deleteCartItem(Cart cart);
+    float sumPrice();
 }

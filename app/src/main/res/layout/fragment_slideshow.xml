@@ -10,12 +10,14 @@
 
     <Button
         android:id="@+id/btn_place_order"
-        android:layout_margin="8dp"
-        android:textColor="@color/white"
-        android:background="@color/Crimson"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="86dp"
+        android:background="@color/Crimson"
+        android:text="Thanh Toán"
+        android:textColor="@color/white" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_cart"

@@ -72,6 +72,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void getToppingList() {
+        //Khai bao hop dung compositeDisposable va add api get my cay tu retrofit
         compositeDisposable.add(mcApi.getMyCay(Common.TOPPING_MENU_ID)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -85,6 +86,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void getMenu() {
+        //Khai bao hop dung compositeDisposable va add api get menu tu retrofit
         compositeDisposable.add(mcApi.getMenu()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

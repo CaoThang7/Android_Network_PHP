@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Common {
-    private static final String BASE_URL = "http://10.0.2.2/mycay/";
+    private static final String BASE_URL = "http://10.0.3.2/mycay/";
 
-
+    //biến để lưu trữ dữ liệu của menu
     public static Category currentCategory= null;
 
     public static List<mycay> toppingList =new ArrayList<>();

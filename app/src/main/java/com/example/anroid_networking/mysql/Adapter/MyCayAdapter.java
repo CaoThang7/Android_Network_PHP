@@ -89,6 +89,7 @@ public class MyCayAdapter extends RecyclerView.Adapter<MyCayViewHolder> {
         RadioButton rdi_sizeM=(RadioButton)itemView.findViewById(R.id.rdi_sizeM);
         RadioButton rdi_sizeL=(RadioButton)itemView.findViewById(R.id.rdi_sizeL);
 
+
         rdi_sizeM.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -105,6 +106,7 @@ public class MyCayAdapter extends RecyclerView.Adapter<MyCayViewHolder> {
                 }
             }
         });
+
 
         RadioButton rdi_capdo_10=(RadioButton)itemView.findViewById(R.id.rdi_capdo_10);
         RadioButton rdi_capdo_20=(RadioButton)itemView.findViewById(R.id.rdi_capdo_20);
@@ -209,7 +211,28 @@ public class MyCayAdapter extends RecyclerView.Adapter<MyCayViewHolder> {
         txt_product_dialog.setText(mycayList.get(position).Name);
 
         builder.setView(itemView);
-        builder.setNegativeButton("ADD TO CART", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+//                if(Common.sizeOfCup == -1){
+//                    Toast.makeText(context, "Please choose size of cup", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//                if(Common.capdo == -1){
+//                    Toast.makeText(context, "Please choose cap do", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//                if(Common.loai == -1){
+//                    Toast.makeText(context, "Please choose mon an kem", Toast.LENGTH_SHORT).show();
+//                    return;
+//                }
+//
+//                showConfirmDialog(position,txt_count.getNumber());
+                dialog.dismiss();
+            }
+//        });
+
+        }).setPositiveButton("ADD TO CART", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if(Common.sizeOfCup == -1){
@@ -226,9 +249,9 @@ public class MyCayAdapter extends RecyclerView.Adapter<MyCayViewHolder> {
                 }
 
                 showConfirmDialog(position,txt_count.getNumber());
-                dialog.dismiss();
             }
         });
+
 
 
         builder.show();

@@ -14,7 +14,7 @@
         android:layout_height="0dp">
 
         <ImageView
-            android:src="@drawable/ot"
+            android:src="@drawable/bannermicay"
             android:scaleType="fitXY"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
@@ -22,11 +22,11 @@
         <TextView
             android:id="@+id/txt_menu_name"
             android:text="my cay"
-            android:textColor="@color/Crimson"
+            android:textColor="@color/white"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="20dp"
             android:textSize="30sp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="-10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
